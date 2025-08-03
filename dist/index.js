@@ -65,7 +65,7 @@ export function presetButtonPainter() {
                         'background-color': bgColor,
                     }
                 },
-                { autocomplete: ['button', 'button-small', 'button-medium', 'button-large', 'button-$colors'] }
+                { autocomplete: ['button-$colors'] }
             ],
             // Ghost button variations: .button-ghost-{color}-{shade}
             [
@@ -108,6 +108,148 @@ export function presetButtonPainter() {
                     `
                 },
                 { autocomplete: ['button-ghost-$colors'] }
+            ],
+            // JIT Solid button variations: .button-[arbitrary-value]
+            [
+                /^button-\[(.+)\]$/,
+                ([, arbitraryValue], { theme }) => {
+                    const colors = theme.colors || {}
+                    
+                    // Smart contrast detection for arbitrary colors
+                    function getContrastColor(color) {
+                        // Parse different color formats and calculate luminance
+                        let r, g, b
+                        
+                        // Hex format (#rgb or #rrggbb)
+                        if (color.startsWith('#')) {
+                            const hex = color.slice(1)
+                            if (hex.length === 3) {
+                                r = parseInt(hex[0] + hex[0], 16)
+                                g = parseInt(hex[1] + hex[1], 16)
+                                b = parseInt(hex[2] + hex[2], 16)
+                            } else if (hex.length === 6) {
+                                r = parseInt(hex.slice(0, 2), 16)
+                                g = parseInt(hex.slice(2, 4), 16)
+                                b = parseInt(hex.slice(4, 6), 16)
+                            }
+                        }
+                        // RGB/RGBA format
+                        else if (color.startsWith('rgb')) {
+                            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+                            if (match) {
+                                r = parseInt(match[1])
+                                g = parseInt(match[2])
+                                b = parseInt(match[3])
+                            }
+                        }
+                        
+                        // If we successfully parsed RGB values, calculate luminance
+                        if (r !== undefined && g !== undefined && b !== undefined) {
+                            // Convert to relative values (0-1) and apply gamma correction
+                            const rRel = (r / 255) <= 0.03928 ? (r / 255) / 12.92 : Math.pow(((r / 255) + 0.055) / 1.055, 2.4)
+                            const gRel = (g / 255) <= 0.03928 ? (g / 255) / 12.92 : Math.pow(((g / 255) + 0.055) / 1.055, 2.4)
+                            const bRel = (b / 255) <= 0.03928 ? (b / 255) / 12.92 : Math.pow(((b / 255) + 0.055) / 1.055, 2.4)
+                            
+                            // Calculate relative luminance using WCAG formula
+                            const luminance = 0.2126 * rRel + 0.7152 * gRel + 0.0722 * bRel
+                            
+                            // Choose text color based on luminance
+                            if (luminance > 0.5) {
+                                // Light background - use dark text
+                                return colors.primary?.[900] || colors.gray?.[900] || '#000000'
+                            } else {
+                                // Dark background - use light text
+                                return colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                            }
+                        }
+                        
+                        // Fallback to white text for unparseable colors (css vars, hsl, etc.)
+                        return colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                    }
+                    
+                    const textColor = getContrastColor(arbitraryValue)
+                    
+                    return {
+                        'color': textColor,
+                        'border-color': arbitraryValue,
+                        'background-color': arbitraryValue,
+                    }
+                },
+            ],
+            // JIT Ghost button variations: .button-ghost-[arbitrary-value]
+            [
+                /^button-ghost-\[(.+)\]$/,
+                ([, arbitraryValue], { theme, rawSelector }) => {
+                    const colors = theme.colors || {}
+                    
+                    // Smart contrast detection for arbitrary colors (same as solid buttons)
+                    function getContrastColor(color) {
+                        let r, g, b
+                        
+                        // Hex format (#rgb or #rrggbb)
+                        if (color.startsWith('#')) {
+                            const hex = color.slice(1)
+                            if (hex.length === 3) {
+                                r = parseInt(hex[0] + hex[0], 16)
+                                g = parseInt(hex[1] + hex[1], 16)
+                                b = parseInt(hex[2] + hex[2], 16)
+                            } else if (hex.length === 6) {
+                                r = parseInt(hex.slice(0, 2), 16)
+                                g = parseInt(hex.slice(2, 4), 16)
+                                b = parseInt(hex.slice(4, 6), 16)
+                            }
+                        }
+                        // RGB/RGBA format
+                        else if (color.startsWith('rgb')) {
+                            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+                            if (match) {
+                                r = parseInt(match[1])
+                                g = parseInt(match[2])
+                                b = parseInt(match[3])
+                            }
+                        }
+                        
+                        // If we successfully parsed RGB values, calculate luminance
+                        if (r !== undefined && g !== undefined && b !== undefined) {
+                            // Convert to relative values (0-1) and apply gamma correction
+                            const rRel = (r / 255) <= 0.03928 ? (r / 255) / 12.92 : Math.pow(((r / 255) + 0.055) / 1.055, 2.4)
+                            const gRel = (g / 255) <= 0.03928 ? (g / 255) / 12.92 : Math.pow(((g / 255) + 0.055) / 1.055, 2.4)
+                            const bRel = (b / 255) <= 0.03928 ? (b / 255) / 12.92 : Math.pow(((b / 255) + 0.055) / 1.055, 2.4)
+                            
+                            // Calculate relative luminance using WCAG formula
+                            const luminance = 0.2126 * rRel + 0.7152 * gRel + 0.0722 * bRel
+                            
+                            // Choose text color based on luminance
+                            if (luminance > 0.5) {
+                                // Light background - use dark text
+                                return colors.primary?.[900] || colors.gray?.[900] || '#000000'
+                            } else {
+                                // Dark background - use light text
+                                return colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                            }
+                        }
+                        
+                        // Fallback to white text for unparseable colors (css vars, hsl, etc.)
+                        return colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                    }
+                    
+                    const hoverTextColor = getContrastColor(arbitraryValue)
+                    
+                    // Use CSS string format to properly handle hover/focus
+                    return `
+                        .${rawSelector} {
+                            color: ${arbitraryValue};
+                            border-color: ${arbitraryValue};
+                            background-color: transparent;
+                        }
+                        .${rawSelector}:hover,
+                        .${rawSelector}:focus {
+                            background-color: ${arbitraryValue};
+                            border-color: ${arbitraryValue};
+                            color: ${hoverTextColor};
+                        }
+                    `
+                },
             ]
         ]
     }
