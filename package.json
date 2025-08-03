@@ -1,0 +1,48 @@
+{
+  "name": "unocss-preset-button-painter",
+  "version": "1.0.0",
+  "description": "A UnoCSS preset that dynamically generates button color utilities based on your theme's color configuration",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "unocss",
+    "preset",
+    "css",
+    "buttons",
+    "utilities",
+    "tailwindcss",
+    "color",
+    "theme"
+  ],
+  "author": "Nicholas Cerminara",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whatnickcodes/unocss-preset-button-painter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whatnickcodes/unocss-preset-button-painter/issues"
+  },
+  "homepage": "https://github.com/whatnickcodes/unocss-preset-button-painter#readme",
+  "peerDependencies": {
+    "@unocss/core": "^0.50.0",
+    "unocss": "^0.50.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

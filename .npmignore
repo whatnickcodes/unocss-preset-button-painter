@@ -1,0 +1,26 @@
+# Development files
+.git/
+.github/
+.vscode/
+*.log
+node_modules/
+
+# Source files (only publish dist)
+src/
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Build config
+.babelrc
+webpack.config.js
+rollup.config.js
+vite.config.js
+tsconfig.json
+
+# OS files
+.DS_Store
+Thumbs.db

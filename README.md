@@ -16,12 +16,12 @@ Add the preset to your UnoCSS configuration:
 
 ```js
 import { defineConfig, presetUno } from 'unocss'
-import { presetButtons } from 'unocss-preset-button-painter'
+import { presetButtonPainter } from 'unocss-preset-button-painter'
 
 export default defineConfig({
   presets: [
     presetUno(),
-    presetButtons()
+    presetButtonPainter()
   ]
 })
 ```
