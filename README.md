@@ -1,4 +1,4 @@
-# unocss-preset-button-painter
+# 🎨🎨🎨 unocss-preset-button-painter
 
 A UnoCSS preset that dynamically generates button color utilities based on your theme's color configuration. It creates solid and ghost button styles with smart text contrast and hover/focus states, complete with autocomplete support.
 
