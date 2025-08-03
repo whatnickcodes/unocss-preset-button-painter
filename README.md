@@ -2,6 +2,8 @@
 
 A UnoCSS preset that dynamically generates button color utilities based on your theme's color configuration. It creates solid and ghost button styles with smart text contrast and hover/focus states, complete with autocomplete support.
 
+**Probably don't use this unless you are pop open the rules in the preset and understand what it is doing. It is not very useful unless used with additional base CSS**
+
 ## Installation
 
 ```bash
