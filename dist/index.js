@@ -35,8 +35,8 @@ export function presetButtonPainter() {
         // Smart autocomplete templates
         autocomplete: {
             templates: [
-                'button-$colors-$colorOpacity',           // button-primary-500
-                'button-ghost-$colors-$colorOpacity',     // button-ghost-primary-500
+                'button-$colors-<num>',                   // button-primary-500
+                'button-ghost-$colors-<num>',             // button-ghost-primary-500
             ],
             shorthands: {
                 // Base button size classes
@@ -75,7 +75,8 @@ export function presetButtonPainter() {
                         'border-color': borderColor,
                         'background-color': bgColor,
                     }
-                }
+                },
+                { autocomplete: ['button-$colors-<num>', 'button-$colors-(50|100|200|300|400|500|600|700|800|900)'] }
             ],
             
             // Ghost button variations: .button-ghost-{color}-{shade}
@@ -117,7 +118,8 @@ export function presetButtonPainter() {
                             color: ${hoverTextColor};
                         }
                     `
-                    }
+                },
+                { autocomplete: ['button-ghost-$colors-<num>', 'button-ghost-$colors-(50|100|200|300|400|500|600|700|800|900)'] }
             ]
         ]
     }
