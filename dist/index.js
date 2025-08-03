@@ -65,9 +65,8 @@ export function presetButtonPainter() {
                         'background-color': bgColor,
                     }
                 },
-                // { autocomplete: ['button-$colors-<num>', 'button-$colors-(50|100|200|300|400|500|600|700|800|900)'] }
+                { autocomplete: ['button-$colors'] }
             ],
-            
             // Ghost button variations: .button-ghost-{color}-{shade}
             [
                 /^button-ghost-([a-z]+)-(\d+)$/,
@@ -108,7 +107,6 @@ export function presetButtonPainter() {
                         }
                     `
                 },
-                // { autocomplete: ['button-ghost-$colors-<num>', 'button-ghost-$colors-(50|100|200|300|400|500|600|700|800|900)'] }
             ]
         ]
     }
