@@ -31,19 +31,7 @@
 export function presetButtonPainter() {
     return {
         name: 'unocss-preset-button-painter',
-        
-        // Smart autocomplete templates
-        autocomplete: {
-            templates: [
-                'button-$colors-<num>',                   // button-primary-500
-                'button-ghost-$colors-<num>',             // button-ghost-primary-500
-            ],
-            shorthands: {
-                // Base button size classes
-                'button-size': ['button', 'button-small', 'button-medium', 'button-large']
-            }
-        },
-        
+    
         rules: [
             // Solid button variations: .button-{color}-{shade}
             [
