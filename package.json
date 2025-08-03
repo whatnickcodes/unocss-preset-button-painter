@@ -40,8 +40,8 @@
   },
   "homepage": "https://github.com/whatnickcodes/unocss-preset-button-painter#readme",
   "peerDependencies": {
-    "@unocss/core": "^0.50.0",
-    "unocss": "^0.50.0"
+    "@unocss/core": ">=0.50.0",
+    "unocss": ">=0.50.0"
   },
   "devDependencies": {},
   "dependencies": {}
