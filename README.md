@@ -6,6 +6,8 @@ A UnoCSS preset that dynamically generates button color utilities based on your 
 
 ## Installation
 
+https://www.npmjs.com/package/unocss-preset-button-painter
+
 ```bash
 npm install unocss-preset-button-painter
 ```
