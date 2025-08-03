@@ -1,6 +1,6 @@
 {
   "name": "unocss-preset-button-painter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A UnoCSS preset that dynamically generates button color utilities based on your theme's color configuration",
   "main": "dist/index.js",
   "module": "dist/index.js",
