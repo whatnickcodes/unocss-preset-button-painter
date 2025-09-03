@@ -51,7 +51,7 @@ export function presetButtonPainter() {
                     const shadeNum = parseInt(shade)
                     let textColor
                     
-                    if (shadeNum <= 400) {
+                    if (shadeNum <= 300) {
                         // Light shades - use dark text from same color family
                         textColor = colorGroup[900] || colors.gray?.[900] || '#000000'
                     } else {
