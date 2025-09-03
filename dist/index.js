@@ -52,11 +52,11 @@ export function presetButtonPainter() {
                     let textColor
                     
                     if (shadeNum <= 400) {
-                        // Light shades - use dark text
-                        textColor = colors.primary?.[900] || colors.gray?.[900] || '#000000'
+                        // Light shades - use dark text from same color family
+                        textColor = colorGroup[900] || colors.gray?.[900] || '#000000'
                     } else {
-                        // Dark shades - use light text  
-                        textColor = colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                        // Dark shades - use light text from same color family
+                        textColor = colorGroup[50] || colors.gray?.[100] || '#ffffff'
                     }
                     
                     return {
@@ -85,11 +85,11 @@ export function presetButtonPainter() {
                     let hoverTextColor
                     
                     if (shadeNum <= 400) {
-                        // Light hover backgrounds - use dark text
-                        hoverTextColor = colors.primary?.[900] || colors.gray?.[900] || '#000000'
+                        // Light hover backgrounds - use dark text from same color family
+                        hoverTextColor = colorGroup[900] || colors.gray?.[900] || '#000000'
                     } else {
-                        // Dark hover backgrounds - use light text
-                        hoverTextColor = colors.secondary?.[100] || colors.gray?.[100] || '#ffffff'
+                        // Dark hover backgrounds - use light text from same color family
+                        hoverTextColor = colorGroup[50] || colors.gray?.[100] || '#ffffff'
                     }
                     
                     // Use CSS string format to properly handle hover/focus
